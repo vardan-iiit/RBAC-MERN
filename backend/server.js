@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require("path"); // <-- ADD THIS
+const path = require("path"); 
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
@@ -18,14 +18,17 @@ mongoose.connect(process.env.MONGO_URI)
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 
-// === ADD THIS for serving frontend ===
+
+
+// Serve frontend static files
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("frontend/build")); // <-- adjust "frontend" if different
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
   });
 }
+
 // === END ===
 
 const PORT = process.env.PORT || 5000;

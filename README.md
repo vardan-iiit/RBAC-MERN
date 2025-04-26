@@ -13,5 +13,6 @@ Before running the project locally, make sure you have the following installed:
   --npm install
   --npm start
 
+NOTE  - ALSO CHECK SPAM FOLDER WHEN LOOKING FOR OTP
 
  
